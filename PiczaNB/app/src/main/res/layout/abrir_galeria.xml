@@ -11,7 +11,7 @@
         android:id="@+id/mostrar_im"
         android:layout_width="343dp"
         android:layout_height="343dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,15 +21,175 @@
         android:id="@+id/abrirG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
         android:text="Abrir"
-        app:layout_constraintTop_toBottomOf="@+id/mostrar_im"
-        tools:layout_editor_absoluteX="161dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCamara"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:text="Camara"
-        app:layout_constraintTop_toBottomOf="@+id/abrirG"
-        tools:layout_editor_absoluteX="159dp" />
+        app:layout_constraintStart_toEndOf="@+id/abrirG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNegativo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Negativo"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mostrar_im" />
+
+    <Button
+        android:id="@+id/btnUndo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Revertir"
+        app:layout_constraintStart_toEndOf="@+id/btnCamara"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnGamma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Gamma"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGris" />
+
+    <Button
+        android:id="@+id/btnBrillo"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Brillo"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGamma" />
+
+    <Button
+        android:id="@+id/btnGris"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Grises"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNegativo" />
+
+    <Button
+        android:id="@+id/btnCont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Contraste"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/btnNegativo"
+        app:layout_constraintTop_toBottomOf="@+id/mostrar_im" />
+
+    <Button
+        android:id="@+id/btnCanales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Canales"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/btnGris"
+        app:layout_constraintTop_toBottomOf="@+id/btnCont" />
+
+    <Button
+        android:id="@+id/btnSmoot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Smoothing"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/btnGamma"
+        app:layout_constraintTop_toBottomOf="@+id/btnCanales" />
+
+    <Button
+        android:id="@+id/btnSharpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Sharpen"
+        app:layout_constraintStart_toEndOf="@+id/btnCont"
+        app:layout_constraintTop_toBottomOf="@+id/mostrar_im" />
+
+    <Button
+        android:id="@+id/btnMean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Mean"
+        app:layout_constraintStart_toEndOf="@+id/btnCanales"
+        app:layout_constraintTop_toBottomOf="@+id/btnSharpen" />
+
+    <Button
+        android:id="@+id/btnGaussian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Gaussian"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/btnBrillo"
+        app:layout_constraintTop_toBottomOf="@+id/btnSmoot" />
+
+    <Button
+        android:id="@+id/btnEmbo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Embossing"
+        app:layout_constraintStart_toEndOf="@+id/btnSmoot"
+        app:layout_constraintTop_toBottomOf="@+id/btnMean" />
+
+    <Button
+        android:id="@+id/btnEdge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Edge"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/btnGaussian"
+        app:layout_constraintTop_toBottomOf="@+id/btnEmbo" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="307575ed-b323-402a-90ad-d9efc1e3bbc4" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +24,14 @@
         <projects_view />
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
   </component>
   <component name="ProjectId" id="1lUTZtD5CFrYMPcYZRlCqNDgaBU" />
   <component name="ProjectViewState">
@@ -103,5 +116,35 @@
       <updated>1607650728687</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607654698331">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1607654698331" />
+    <state width="1301" height="176" key="GridCell.Tab.0.bottom" timestamp="1607661661781">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1301" height="176" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607661661781" />
+    <state width="1301" height="176" key="GridCell.Tab.0.center" timestamp="1607661661781">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1301" height="176" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607661661781" />
+    <state width="1301" height="176" key="GridCell.Tab.0.left" timestamp="1607661661781">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1301" height="176" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607661661781" />
+    <state width="1301" height="176" key="GridCell.Tab.0.right" timestamp="1607661661781">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1301" height="176" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607661661781" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1607914082225">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1607914082224" />
+    <state x="424" y="6" key="refactoring.ChangeSignatureDialog" timestamp="1607919733244">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="424" y="6" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1607919733244" />
   </component>
 </project>
