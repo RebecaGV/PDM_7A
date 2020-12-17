@@ -122,29 +122,43 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1607654698331" />
-    <state width="1301" height="176" key="GridCell.Tab.0.bottom" timestamp="1607661661781">
+    <state width="1323" height="141" key="GridCell.Tab.0.bottom" timestamp="1608171968290">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1301" height="176" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607661661781" />
-    <state width="1301" height="176" key="GridCell.Tab.0.center" timestamp="1607661661781">
+    <state width="1323" height="141" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1608171968290" />
+    <state width="1323" height="141" key="GridCell.Tab.0.center" timestamp="1608171968290">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1301" height="176" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607661661781" />
-    <state width="1301" height="176" key="GridCell.Tab.0.left" timestamp="1607661661781">
+    <state width="1323" height="141" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1608171968290" />
+    <state width="1323" height="141" key="GridCell.Tab.0.left" timestamp="1608171968290">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1301" height="176" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607661661781" />
-    <state width="1301" height="176" key="GridCell.Tab.0.right" timestamp="1607661661781">
+    <state width="1323" height="141" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1608171968290" />
+    <state width="1323" height="141" key="GridCell.Tab.0.right" timestamp="1608171968290">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1301" height="176" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607661661781" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1607914082225">
+    <state width="1323" height="141" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1608171968290" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1608166308636">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1607914082224" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1608166308636" />
     <state x="424" y="6" key="refactoring.ChangeSignatureDialog" timestamp="1607919733244">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="424" y="6" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1607919733244" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/src/main/java/com/p1/picza_pdm/ConvolucionMatrix.kt</url>
+          <line>19</line>
+          <properties class="com.p1.picza_pdm.ConvolucionMatrix" method="Convolucion">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

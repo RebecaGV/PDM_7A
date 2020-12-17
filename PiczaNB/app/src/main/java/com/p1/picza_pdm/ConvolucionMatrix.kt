@@ -5,105 +5,72 @@ import android.graphics.Color
 
 
 class ConvolucionMatrix {
-    constructor(size: Int) {
-        Matrix = Array(size) { DoubleArray(size) }
-    }
 
-    constructor() {
-
-    }
     val SIZE = 3
+    private var Matrix: Array<IntArray> = Array(SIZE) { IntArray(SIZE) }
+    var Factor = 1
+    var Offset = 1
 
-    lateinit var Matrix: Array<DoubleArray>
-    var Factor = 1.0
-    var Offset = 1.0
-
-    fun ConvolucionMatrix(size: Int) {
-        Matrix = Array(size) { DoubleArray(size) }
-    }
-
-    fun setAll(value: Double) {
+    fun aplicarConfig(config: Array<IntArray>) {
         for (x in 0 until SIZE) {
-            for (y in 0 until SIZE) {
-                Matrix[x][y] = value
-            }
+            for (y in 0 until SIZE) Matrix[x][y] = config[x][y]
         }
     }
 
-    fun aplicarConfig(config: Array<DoubleArray>) {
-        for (x in 0 until SIZE) {
-            for (y in 0 until SIZE) {
-                Matrix[x][y] = config[x][y]
-            }
-        }
-    }
+    fun Convolucion(src: Bitmap): Bitmap {
+        var picw : Int = src.width
+        var pich : Int = src.height
+        val bitmap : Bitmap = src.copy(src.config, true)
+        val pixel = IntArray(picw * pich)
+        bitmap.getPixels(pixel, 0, picw, 0, 0, picw, pich)
 
-    fun Convolucion(src: Bitmap?, matrix: ConvolucionMatrix): Bitmap? {
-        var src = src
-        val width = src!!.width
-        val height = src.height
-        val result = Bitmap.createBitmap(width, height, src.config)
-        var A: Int
-        var R: Int
-        var G: Int
-        var B: Int
-        var sumR: Int
-        var sumG: Int
-        var sumB: Int
-        val pixels = Array(SIZE) { IntArray(SIZE) }
-        for (y in 0 until height - 2) {
-            for (x in 0 until width - 2) {
+        var sumaR = 0
+        var sumaG = 0
+        var sumaB = 0
+        var index = 0
+        var R = 0
+        var G = 0
+        var B = 0
 
-                for (i in 0 until SIZE) {
-                    for (j in 0 until SIZE) {
-                        pixels[i][j] = src?.getPixel(x + i, y + j)!!
+        for (x in 1 until picw - 1) {
+            for (y in 1 until pich - 1) {
+
+                sumaR = 0
+                sumaG = 0
+                sumaB = 0
+                for (i in -1 until 2) {
+                    for (j in -1 until 2) {
+                        index = (y + j) * picw + (x + i)
+                        sumaR += (pixel[index] shr 16 and 0xff) * Matrix[i +1][j + 1]
+                        sumaG += (pixel[index] shr 8 and 0xff) * Matrix[i + 1][j + 1]
+                        sumaB += (pixel[index] and 0xff) * Matrix[i + 1][j + 1]
                     }
                 }
 
-                A = Color.alpha(pixels[1][1])
+                index = (y) * picw + (x)
+                R = validar(sumaR)
+                G = validar(sumaG)
+                B = validar(sumaB)
 
-                sumB = 0
-                sumG = sumB
-                sumR = sumG
-
-                for (i in 0 until SIZE) {
-                    for (j in 0 until SIZE) {
-                        sumR += (Color.red(pixels[i][j]) * matrix.Matrix.get(i).get(j)).toInt()
-                        sumG += (Color.green(pixels[i][j]) * matrix.Matrix.get(i).get(j)).toInt()
-                        sumB += (Color.blue(pixels[i][j]) * matrix.Matrix.get(i).get(j)).toInt()
-                    }
-                }
-
-                R = ((sumR / matrix.Factor + matrix.Offset).toInt())
-                if (R < 0) {
-                    R = 0
-                } else if (R > 255) {
-                    R = 255
-                }
-
-                G = ((sumG / matrix.Factor + matrix.Offset).toInt())
-                if (G < 0) {
-                    G = 0
-                } else if (G > 255) {
-                    G = 255
-                }
-
-                B = ((sumB / matrix.Factor + matrix.Offset).toInt())
-                if (B < 0) {
-                    B = 0
-                } else if (B > 255) {
-                    B = 255
-                    result.setPixel(x + 1, y + 1, Color.argb(A, R, G, B))
-                }
+                pixel[index] = -0x1000000 or (R shl 16) or (G shl 8) or B
             }
         }
-        src?.recycle()
-        src = null
 
-        // final image
-        return result
+        bitmap.setPixels(pixel, 0, picw, 0, 0, picw, pich);
+        return bitmap
     }
 
-
+    private fun validar(sumatoria: Int) : Int {
+        var suma: Int= sumatoria / Factor + Offset
+        if (suma < 0.0) {
+            suma = -suma
+        }
+        if (suma < 0) {
+            suma = 0
+        } else if (suma > 255) {
+            suma = 255
+        }
+        return suma
+    }
     }
 

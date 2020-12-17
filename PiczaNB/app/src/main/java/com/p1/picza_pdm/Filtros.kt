@@ -1,6 +1,7 @@
 package com.p1.picza_pdm
 
 import android.graphics.*
+import kotlinx.android.synthetic.main.abrir_galeria.*
 import kotlin.math.pow
 
 
@@ -257,33 +258,75 @@ class Filtros {
         // return final image
         return bmOut
     }
-    //falta mean,edge,smoothing
-    fun sharpen(src: Bitmap?): Bitmap? {
-        val SharpConfig = arrayOf(doubleArrayOf(0.0, -2.0, 0.0), doubleArrayOf(-2.0, 11.0, -2.0), doubleArrayOf(0.0, -2.0, 0.0))
+    //Convolucion
+    fun smoothing(src: Bitmap): Bitmap {
+        val SmootConfig = arrayOf(
+                intArrayOf(1, 1, 1),
+                intArrayOf(1, 1, 1),
+                intArrayOf(1, 1, 1))
+        val convMatrix: ConvolucionMatrix = ConvolucionMatrix()
+        convMatrix.aplicarConfig(SmootConfig)
+        convMatrix.Factor = 9
+        convMatrix.Offset = 0
+        return convMatrix.Convolucion(src)
+    }
+    fun edge(src: Bitmap): Bitmap {
+        val EdgeConfig = arrayOf(
+                intArrayOf(1, 1, 1),
+                intArrayOf(0, 0, 0),
+                intArrayOf(-1, -1, -1))
+        val convMatrix: ConvolucionMatrix = ConvolucionMatrix()
+        convMatrix.aplicarConfig(EdgeConfig)
+        convMatrix.Factor = 1
+        convMatrix.Offset = 127
+        return convMatrix.Convolucion(src)
+    }
+    fun mean(src: Bitmap): Bitmap {
+        val MeanConfig = arrayOf(
+                intArrayOf(-1, -1, -1),
+                intArrayOf(-1, 9, -1),
+                intArrayOf(-1, -1, -1))
+        val convMatrix: ConvolucionMatrix = ConvolucionMatrix()
+        convMatrix.aplicarConfig(MeanConfig)
+        convMatrix.Factor = 1
+        convMatrix.Offset = 0
+        return convMatrix.Convolucion(src)
+    }
+    fun sharpen(src: Bitmap): Bitmap {
+        val SharpConfig = arrayOf(
+                intArrayOf(0, -2, 0),
+                intArrayOf(-2, 11, -2),
+                intArrayOf(0, -2, 0))
         val convMatrix = ConvolucionMatrix()
         convMatrix.aplicarConfig(SharpConfig)
-        convMatrix.Factor = 3.0
-        return convMatrix.Convolucion(src, convMatrix)
+        convMatrix.Factor = 3
+        return convMatrix.Convolucion(src)
     }
-    fun emboss(src: Bitmap?): Bitmap? {
-        val EmbossConfig = arrayOf(doubleArrayOf(-1.0, 0.0, -1.0), doubleArrayOf(0.0, 4.0, 0.0), doubleArrayOf(-1.0, 0.0, -1.0))
-        val convMatrix: ConvolucionMatrix = ConvolucionMatrix(3)
+    fun emboss(src: Bitmap): Bitmap {
+        val EmbossConfig = arrayOf(
+                intArrayOf(-1, 0, -1),
+                intArrayOf(0, 4, 0),
+                intArrayOf(-1, 0, -1))
+        val convMatrix: ConvolucionMatrix = ConvolucionMatrix()
         convMatrix.aplicarConfig(EmbossConfig)
-        convMatrix.Factor = 1.0
-        convMatrix.Offset = 127.0
-        return convMatrix.Convolucion(src, convMatrix)
+        convMatrix.Factor = 1
+        convMatrix.Offset = 127
+        return convMatrix.Convolucion(src)
     }
-    fun gaussian(src: Bitmap?): Bitmap? {
-        val GaussianBlurConfig = arrayOf(doubleArrayOf(1.0, 2.0, 1.0), doubleArrayOf(2.0, 4.0, 2.0), doubleArrayOf(1.0, 2.0, 1.0))
-        val convMatrix = ConvolucionMatrix(3)
+    fun gaussian(src: Bitmap){
+        val GaussianBlurConfig = arrayOf(
+                intArrayOf(1, 2, 1),
+                intArrayOf(2, 4, 2),
+                intArrayOf(1, 2, 1))
+        val convMatrix = ConvolucionMatrix()
         convMatrix.aplicarConfig(GaussianBlurConfig)
-        convMatrix.Factor = 16.0
-        convMatrix.Offset = 0.0
-        return convMatrix.Convolucion(src, convMatrix)
-    }
+        convMatrix.Factor = 16
+        convMatrix.Offset = 0
+        var src2= convMatrix.Convolucion(src)
 
+    }
     //extras 5
-    fun sepia(src: Bitmap?): Bitmap? {
+    fun sepia(src: Bitmap): Bitmap{
 
         var src = src
         val width = src!!.width
@@ -334,10 +377,9 @@ class Filtros {
             }
         }
         src.recycle()
-        src = null
         return bmOut
     }
-    fun tint(src: Bitmap?, color: Int): Bitmap? {
+    fun tint(src: Bitmap, color: Int): Bitmap {
 
         var src = src
         val width = src!!.width
@@ -351,10 +393,9 @@ class Filtros {
         c.setBitmap(bmOut)
         c.drawBitmap(src, 0f, 0f, p)
         src.recycle()
-        src = null
         return bmOut
     }
-    fun hue(bitmap: Bitmap?, hue: Float): Bitmap? {
+    fun hue(bitmap: Bitmap, hue: Float): Bitmap{
         var bitmap = bitmap
         val newBitmap = bitmap!!.copy(bitmap.config, true)
         val width = newBitmap.width
@@ -369,10 +410,10 @@ class Filtros {
             }
         }
         bitmap.recycle()
-        bitmap = null
+
         return newBitmap
     }
-    fun vignette(image: Bitmap): Bitmap? {
+    fun vignette(image: Bitmap): Bitmap {
         val width = image.width
         val height = image.height
         val radius = (width / 1.2).toFloat()
@@ -395,7 +436,7 @@ class Filtros {
         canvas.drawBitmap(image, rect, rect, paint)
         return image
     }
-    fun saturacion(src: Bitmap?, value: Int): Bitmap? {
+    fun saturacion(src: Bitmap, value: Int): Bitmap {
         var src = src
         val f_value = (value / 100.0).toFloat()
         val w = src!!.width
@@ -409,7 +450,7 @@ class Filtros {
         paint.colorFilter = filter
         canvasResult.drawBitmap(src, 0f, 0f, paint)
         src.recycle()
-        src = null
+
         return bitmapResult
     }
 }
