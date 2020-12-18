@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">picza_pdm</string>
+    <string-array name="filtros">
+        <item>Selecciona</item>
+        <item>Negativo</item>
+        <item>Escala Grises</item>
+        <item>Brillo</item>
+        <item>Contraste</item>
+        <item>Gamma</item>
+        <item>Canales</item>
+        <item>Smoothing</item>
+        <item>Gaussian</item>
+        <item>Sharpen</item>
+        <item>Mean Removal</item>
+        <item>Emboss</item>
+        <item>Edge</item>
+        <item>Sepia</item>
+        <item>Tint</item>
+        <item>Hue</item>
+        <item>Vignette</item>
+        <item>Saturacion</item>
+
+
+    </string-array>
 </resources>

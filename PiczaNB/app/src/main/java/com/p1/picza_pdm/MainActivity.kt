@@ -7,8 +7,8 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.abrir_galeria.*
 import kotlin.math.pow
@@ -18,22 +18,19 @@ class MainActivity : AppCompatActivity() {
     private val SELECT_ACTIVITY = 50
     private var imageUri : Uri? = null
     private val id = 4
-    private lateinit var img: Bitmap
-    private var img1: Bitmap?=null
-    private var img2: Bitmap?=null
+    private lateinit var actual: Bitmap
+    private lateinit var anterior: Bitmap
+    private lateinit var final: Bitmap
+    private lateinit var s1:SeekBar
+    private lateinit var sR:SeekBar
+    private lateinit var sG:SeekBar
+    private lateinit var sB:SeekBar
+
     lateinit var Undo:Button
-    lateinit var FiltroNegativo:Button
-    lateinit var FiltroEscalaGrises:Button
-    lateinit var FiltroBrillo:Button
-    lateinit var FiltroContraste:Button
-    lateinit var FiltroGamma:Button
-    lateinit var FiltroCanales:Button
-    lateinit var FiltroSmoot:Button
-    lateinit var FiltroGauss:Button
-    lateinit var FiltroSharpen:Button
-    lateinit var FiltroMean:Button
-    lateinit var FiltroEmbo:Button
-    lateinit var FiltroEdge:Button
+    lateinit var Previa:Button
+    lateinit var Aplicar:Button
+    lateinit var Guardar:Button
+
 
 
 
@@ -43,20 +40,172 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.abrir_galeria)
-        FiltroNegativo = findViewById(R.id.btnNegativo)
-        FiltroEscalaGrises = findViewById(R.id.btnGris)
-        FiltroBrillo = findViewById(R.id.btnBrillo)
-        FiltroContraste = findViewById(R.id.btnCont)
-        FiltroGamma = findViewById(R.id.btnGamma)
-        FiltroCanales = findViewById(R.id.btnCanales)
-        FiltroSmoot = findViewById(R.id.btnSmoot)
-        FiltroGauss = findViewById(R.id.btnGaussian)
-        FiltroSharpen = findViewById(R.id.btnSharpen)
-        FiltroMean = findViewById(R.id.btnMean)
-        FiltroEmbo = findViewById(R.id.btnEmbo)
-        FiltroEdge = findViewById(R.id.btnEdge)
-        Undo = findViewById(R.id.btnUndo)
+        var filtroelec: String = ""
+        var p1=0
+        var pR=0
+        var pG=0
+        var pB=0
 
+
+
+        s1 = findViewById(R.id.S1)
+        sR = findViewById(R.id.barritaR)
+        sG = findViewById(R.id.barritaG)
+        sB = findViewById(R.id.barritaB)
+
+        Undo = findViewById(R.id.btnUndo)
+        Previa = findViewById(R.id.btnPrevia)
+        Aplicar = findViewById(R.id.btnAplicar)
+        Guardar = findViewById(R.id.btnGuardar)
+
+
+        val adap = ArrayAdapter.createFromResource(this,
+        R.array.filtros, android.R.layout.simple_spinner_item)
+
+        val cambio:Spinner = findViewById(R.id.filtros)
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        cambio.adapter= adap
+
+        cambio.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val pos = parent.getItemAtPosition(position)
+                when(pos){
+                    "Negativo"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Negativo"
+
+                    }
+                    "Escala Grises"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Escala Grises"
+                    }
+                    "Brillo"->{
+                        s1.visibility = View.VISIBLE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Brillo"
+
+                    }
+                    "Contraste"->{
+                        s1.visibility = View.VISIBLE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Contraste"
+                    }
+                    "Gamma"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.VISIBLE
+                        sG.visibility = View.VISIBLE
+                        sB.visibility = View.VISIBLE
+                        filtroelec = "Gamma"
+
+                    }
+                    "Canales"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.VISIBLE
+                        sG.visibility = View.VISIBLE
+                        sB.visibility = View.VISIBLE
+                        filtroelec = "Canales"
+
+                    }
+                    "Smoothing"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Smoothing"
+                    }
+                    "Gaussian"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Gaussian"
+
+                    }
+                    "Sharpen"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Sharpen"
+
+                    }
+                    "Mean Removal"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Mean Removal"
+
+                    }
+                    "Emboss"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Emboss"
+                    }
+                    "Edge"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Edge"
+                    }
+                    "Sepia"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Sepia"
+                    }
+                    "Tint"->{
+                        s1.visibility = View.VISIBLE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Tint"
+
+                    }
+                    "Hue"->{
+                        s1.visibility = View.VISIBLE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Hue"
+                    }
+                    "Vignette"->{
+                        s1.visibility = View.GONE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Vignette"
+                    }
+                    "Saturacion"->{
+                        s1.visibility = View.VISIBLE
+                        sR.visibility = View.GONE
+                        sG.visibility = View.GONE
+                        sB.visibility = View.GONE
+                        filtroelec = "Saturacion"
+
+                    }
+                }
+
+            }
+        }
 
         abrirG.setOnClickListener(){
             ImageController.selectPhoto(this, SELECT_ACTIVITY)
@@ -68,44 +217,182 @@ class MainActivity : AppCompatActivity() {
             }
         }
         Undo.setOnClickListener(){
-            mostrar_im.setImageBitmap(img)
+            actual = anterior
+            mostrar_im.setImageBitmap(actual)
+            Toast.makeText(this, "Filtro descartado",Toast.LENGTH_SHORT).show()
         }
-        FiltroNegativo.setOnClickListener(){
-            invertir(img)
+        Previa.setOnClickListener(){
+            var pos = filtroelec
+            when(pos){
+                "Negativo"->{
+                    invertir(actual)
+                }
+                "Escala Grises"->{
+                    EscalaGrises(actual)
+                }
+                "Brillo"->{
+                    brillo(actual,p1)
+                }
+                "Contraste"->{
+                    contraste(actual,p1.toDouble())
+                }
+                "Gamma"->{
+                    gamma(actual,pR.toDouble(),pG.toDouble(),pB.toDouble())
+                }
+                "Canales"->{
+                    canales(actual,pR.toDouble(),pG.toDouble(),pB.toDouble())
+                }
+                "Smoothing"->{
+                    smoothing(actual)
+                }
+                "Gaussian"->{
+                   gaussian(actual)
+
+                }
+                "Sharpen"->{
+                    sharpen(actual)
+
+                }
+                "Mean Removal"->{
+                    mean(actual)
+
+                }
+                "Emboss"->{
+                    emboss(actual)
+                }
+                "Edge"->{
+                  edge(actual)
+                }
+                "Sepia"->{
+                    sepia(actual)
+                }
+                "Tint"->{
+                    tint(actual,p1)
+                }
+                "Hue"->{
+                     hue(actual,p1.toFloat())
+                }
+                "Vignette"->{
+                    vignette(actual)
+                }
+                "Saturacion"->{
+                    saturacion(actual,p1)
+
+                }
+            }
         }
-        FiltroEscalaGrises.setOnClickListener(){
-            EscalaGrises(img)
+        Aplicar.setOnClickListener(){
+            var pos = filtroelec
+            when(pos){
+                "Negativo"->{
+                    invertir(actual)
+                }
+                "Escala Grises"->{
+                    EscalaGrises(actual)
+                }
+                "Brillo"->{
+                    brillo(actual,p1)
+                }
+                "Contraste"->{
+                    contraste(actual,p1.toDouble())
+                }
+                "Gamma"->{
+                    gamma(actual,pR.toDouble(),pG.toDouble(),pB.toDouble())
+                }
+                "Canales"->{
+                    canales(actual,pR.toDouble(),pG.toDouble(),pB.toDouble())
+                }
+                "Smoothing"->{
+                    smoothing(actual)
+                }
+                "Gaussian"->{
+                    gaussian(actual)
+
+                }
+                "Sharpen"->{
+                    sharpen(actual)
+
+                }
+                "Mean Removal"->{
+                    mean(actual)
+
+                }
+                "Emboss"->{
+                    emboss(actual)
+                }
+                "Edge"->{
+                    edge(actual)
+                }
+                "Sepia"->{
+                    sepia(actual)
+                }
+                "Tint"->{
+                    tint(actual,p1)
+                }
+                "Hue"->{
+                    hue(actual,p1.toFloat())
+                }
+                "Vignette"->{
+                    vignette(actual)
+                }
+                "Saturacion"->{
+                    saturacion(actual,p1)
+
+                }
+            }
+            anterior = actual
+            actual = (mostrar_im.drawable as BitmapDrawable).bitmap
+            Toast.makeText(this, "Filtro aplicado",Toast.LENGTH_SHORT).show()
+
         }
-        FiltroBrillo.setOnClickListener(){
-            brillo(img, 50)
-        }
-        FiltroContraste.setOnClickListener(){
-            contraste(img, 50.0)
-        }
-        FiltroGamma.setOnClickListener(){
-            gamma(img, 20.0, 30.0, 100.0)
-        }
-        FiltroCanales.setOnClickListener(){
-            canales(img, 20.0, 30.0, 100.0)
-        }
-        FiltroSmoot.setOnClickListener(){
-            smoothing(img)
-        }
-        FiltroEdge.setOnClickListener(){
-            edge(img)
-        }
-        FiltroMean.setOnClickListener(){
-            mean(img)
-        }
-        FiltroSharpen.setOnClickListener(){
-            sharpen(img)
-        }
-        FiltroEmbo.setOnClickListener(){
-            emboss(img)
-        }
-        FiltroGauss.setOnClickListener(){
-            gaussian(img)
-        }
+        s1.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                p1= p0?.progress!!
+            }
+
+        })
+        sR.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                pR= p0?.progress!!
+            }
+
+        })
+        sG.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                pG= p0?.progress!!
+            }
+
+        })
+        sB.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                pB= p0?.progress!!
+            }
+
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -115,7 +402,8 @@ class MainActivity : AppCompatActivity() {
                 imageUri=data!!.data
 
                 mostrar_im.setImageURI(imageUri)
-                img= (mostrar_im.drawable as BitmapDrawable).bitmap
+                actual= (mostrar_im.drawable as BitmapDrawable).bitmap
+                anterior=(mostrar_im.drawable as BitmapDrawable).bitmap
 
                 imageUri?.let {
                     ImageController.saveImage(this, id.toLong(), it)
@@ -125,7 +413,8 @@ class MainActivity : AppCompatActivity() {
         when(requestCode){
             CAMERA_REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    img = data.extras?.get("data") as Bitmap
+                    actual = data.extras?.get("data") as Bitmap
+                    anterior = data.extras?.get("data") as Bitmap
                     mostrar_im.setImageBitmap(data.extras?.get("data") as Bitmap)
                 }
             }
@@ -136,7 +425,9 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    //Programacion del boton
+
+
+    //Filtros
     fun EscalaGrises(src: Bitmap) {
         var src=src
         val GrisArray = floatArrayOf(
@@ -443,14 +734,14 @@ class MainActivity : AppCompatActivity() {
         var src2= convMatrix.Convolucion(src)
         mostrar_im.setImageBitmap(src2)
     }
-    //extras 5
-    fun sepia(src: Bitmap): Bitmap{
+    //Extras
+    fun sepia(src: Bitmap){
 
         var src = src
         val width = src!!.width
         val height = src.height
 
-        val bmOut = Bitmap.createBitmap(width, height, src.config)
+        val res = Bitmap.createBitmap(width, height, src.config)
 
         val GS_RED = 0.3
         val GS_GREEN = 0.59
@@ -491,49 +782,47 @@ class MainActivity : AppCompatActivity() {
                     B = 255
                 }
 
-                bmOut.setPixel(x, y, Color.argb(A, R, G, B))
+                res.setPixel(x, y, Color.argb(A, R, G, B))
             }
         }
-
-        return bmOut
+        mostrar_im.setImageBitmap(res)
     }
-    fun tint(src: Bitmap, color: Int): Bitmap {
+    fun tint(src: Bitmap, color: Int) {
 
         var src = src
         val width = src!!.width
         val height = src.height
 
-        val bmOut = Bitmap.createBitmap(width, height, src.config)
+        val res = Bitmap.createBitmap(width, height, src.config)
         val p = Paint(Color.RED)
         val filter: ColorFilter = LightingColorFilter(color, 1)
         p.colorFilter = filter
         val c = Canvas()
-        c.setBitmap(bmOut)
+        c.setBitmap(res)
         c.drawBitmap(src, 0f, 0f, p)
-        src.recycle()
-        return bmOut
+        mostrar_im.setImageBitmap(res)
     }
-    fun hue(bitmap: Bitmap, hue: Float): Bitmap{
-        var bitmap = bitmap
-        val newBitmap = bitmap!!.copy(bitmap.config, true)
-        val width = newBitmap.width
-        val height = newBitmap.height
+    fun hue(src: Bitmap, hue: Float){
+        var src = src
+        val res = src.copy(src.config, true)
+        val width = res.width
+        val height = res.height
         val hsv = FloatArray(3)
         for (y in 0 until height) {
             for (x in 0 until width) {
-                val pixel = newBitmap.getPixel(x, y)
+                val pixel = res.getPixel(x, y)
                 Color.colorToHSV(pixel, hsv)
                 hsv[0] = hue
-                newBitmap.setPixel(x, y, Color.HSVToColor(Color.alpha(pixel), hsv))
+                res.setPixel(x, y, Color.HSVToColor(Color.alpha(pixel), hsv))
             }
         }
-        bitmap.recycle()
+        mostrar_im.setImageBitmap(res)
 
-        return newBitmap
     }
-    fun vignette(image: Bitmap): Bitmap {
-        val width = image.width
-        val height = image.height
+    fun vignette(src: Bitmap){
+        var src=src
+        val width = src.width
+        val height = src.height
         val radius = (width / 1.2).toFloat()
         val colors = intArrayOf(0, 0x55000000, -0x1000000)
         val positions = floatArrayOf(0.0f, 0.5f, 1.0f)
@@ -541,35 +830,34 @@ class MainActivity : AppCompatActivity() {
         gradient = RadialGradient((width / 2).toFloat(), (height / 2).toFloat(), radius, colors, positions, Shader.TileMode.CLAMP)
 
 
-        val canvas = Canvas(image)
+        val canvas = Canvas(src)
         canvas.drawARGB(1, 0, 0, 0)
         val paint = Paint()
         paint.isAntiAlias = true
         paint.color = Color.BLACK
         paint.shader = gradient
-        val rect = Rect(0, 0, image.width, image.height)
+        val rect = Rect(0, 0, src.width, src.height)
         val rectf = RectF(rect)
         canvas.drawRect(rectf, paint)
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-        canvas.drawBitmap(image, rect, rect, paint)
-        return image
+        canvas.drawBitmap(src, rect, rect, paint)
+        mostrar_im.setImageBitmap(src)
     }
-    fun saturacion(src: Bitmap, value: Int): Bitmap {
+    fun saturacion(src: Bitmap, value: Int) {
         var src = src
         val f_value = (value / 100.0).toFloat()
         val w = src!!.width
         val h = src.height
-        val bitmapResult = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-        val canvasResult = Canvas(bitmapResult)
+        val res = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        val canvasResult = Canvas(res)
         val paint = Paint()
         val colorMatrix = ColorMatrix()
         colorMatrix.setSaturation(f_value)
         val filter = ColorMatrixColorFilter(colorMatrix)
         paint.colorFilter = filter
         canvasResult.drawBitmap(src, 0f, 0f, paint)
-        src.recycle()
 
-        return bitmapResult
+        mostrar_im.setImageBitmap(res)
     }
 
 

@@ -1,195 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/mostrar_im"
-        android:layout_width="343dp"
-        android:layout_height="343dp"
-        android:layout_marginTop="70dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+    <LinearLayout
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:isScrollContainer="false"
+        android:orientation="horizontal"
+        android:padding="0dp">
 
-    <Button
-        android:id="@+id/abrirG"
+        <Button
+            android:id="@+id/btnCamara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Camara" />
+
+        <Button
+            android:id="@+id/abrirG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Abrir" />
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/mostrar_im"
+            android:layout_width="match_parent"
+            android:layout_height="343dp"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filtros"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/filtros"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="423dp" />
+
+        <SeekBar
+            android:id="@+id/S1"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:visibility="gone"
+            android:min="-50"
+            android:max="50"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="523dp"
+            />
+
+        <SeekBar
+            android:id="@+id/barritaR"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:visibility="gone"
+            android:min="-255"
+            android:max="255"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="474dp" />
+
+        <SeekBar
+            android:id="@+id/barritaG"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:visibility="gone"
+            android:min="-255"
+            android:max="255"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="572dp" />
+
+        <SeekBar
+            android:id="@+id/barritaB"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:visibility="gone"
+            android:min="-255"
+            android:max="255"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="621dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:text="Abrir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnCamara"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
-        android:text="Camara"
-        app:layout_constraintStart_toEndOf="@+id/abrirG"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnNegativo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Negativo"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mostrar_im" />
+        <Button
+            android:id="@+id/btnUndo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Revertir"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="672dp" />
 
-    <Button
-        android:id="@+id/btnUndo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:text="Revertir"
-        app:layout_constraintStart_toEndOf="@+id/btnCamara"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnPrevia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vista Previa"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="670dp" />
 
-    <Button
-        android:id="@+id/btnGamma"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Gamma"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGris" />
+        <Button
+            android:id="@+id/btnAplicar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplicar"
+            tools:layout_editor_absoluteX="290dp"
+            tools:layout_editor_absoluteY="672dp" />
 
-    <Button
-        android:id="@+id/btnBrillo"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Brillo"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGamma" />
-
-    <Button
-        android:id="@+id/btnGris"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Grises"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNegativo" />
-
-    <Button
-        android:id="@+id/btnCont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Contraste"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/btnNegativo"
-        app:layout_constraintTop_toBottomOf="@+id/mostrar_im" />
-
-    <Button
-        android:id="@+id/btnCanales"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Canales"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/btnGris"
-        app:layout_constraintTop_toBottomOf="@+id/btnCont" />
-
-    <Button
-        android:id="@+id/btnSmoot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Smoothing"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/btnGamma"
-        app:layout_constraintTop_toBottomOf="@+id/btnCanales" />
-
-    <Button
-        android:id="@+id/btnSharpen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Sharpen"
-        app:layout_constraintStart_toEndOf="@+id/btnCont"
-        app:layout_constraintTop_toBottomOf="@+id/mostrar_im" />
-
-    <Button
-        android:id="@+id/btnMean"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Mean"
-        app:layout_constraintStart_toEndOf="@+id/btnCanales"
-        app:layout_constraintTop_toBottomOf="@+id/btnSharpen" />
-
-    <Button
-        android:id="@+id/btnGaussian"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Gaussian"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/btnBrillo"
-        app:layout_constraintTop_toBottomOf="@+id/btnSmoot" />
-
-    <Button
-        android:id="@+id/btnEmbo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Embossing"
-        app:layout_constraintStart_toEndOf="@+id/btnSmoot"
-        app:layout_constraintTop_toBottomOf="@+id/btnMean" />
-
-    <Button
-        android:id="@+id/btnEdge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Edge"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/btnGaussian"
-        app:layout_constraintTop_toBottomOf="@+id/btnEmbo" />
+    </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
