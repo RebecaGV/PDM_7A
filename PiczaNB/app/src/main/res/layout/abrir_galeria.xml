@@ -60,7 +60,7 @@
         <com.p1.picza_pdm.PizZoom
             android:id="@+id/mostrar_im"
             android:layout_width="match_parent"
-            android:layout_height="469dp"
+            android:layout_height="360dp"
             app:srcCompat="@drawable/logo" />
 
         <TextView
@@ -87,8 +87,8 @@
             android:layout_width="match_parent"
             android:layout_height="41dp"
             android:visibility="gone"
-            android:min="-50"
-            android:max="50"
+            android:min="-100"
+            android:max="100"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="523dp"
             />

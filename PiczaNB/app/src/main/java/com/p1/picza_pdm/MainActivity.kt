@@ -432,6 +432,7 @@ class MainActivity : AppCompatActivity() {
             val Desc = "savedImage"
             bit = mostrar_im.drawable.toBitmap(mostrar_im.width, mostrar_im.height, null)
             MediaStore.Images.Media.insertImage(contentResolver, bit, tittle , Desc)
+            Toast.makeText(this, "Foto guardada", Toast.LENGTH_SHORT).show()
         }
 
 
@@ -831,7 +832,7 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun vignette(src: Bitmap){
-        var src=src
+        var src=src.copy(Bitmap.Config.ARGB_8888, true);
         val width = src.width
         val height = src.height
         val radius = (width / 1.2).toFloat()
@@ -839,8 +840,6 @@ class MainActivity : AppCompatActivity() {
         val positions = floatArrayOf(0.0f, 0.5f, 1.0f)
         val gradient: RadialGradient
         gradient = RadialGradient((width / 2).toFloat(), (height / 2).toFloat(), radius, colors, positions, Shader.TileMode.CLAMP)
-
-
         val canvas = Canvas(src)
         canvas.drawARGB(1, 0, 0, 0)
         val paint = Paint()
