@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import kotlinx.android.synthetic.main.abrir_galeria.*
 import kotlin.math.pow
 
@@ -20,17 +21,17 @@ class MainActivity : AppCompatActivity() {
     private val id = 4
     private lateinit var actual: Bitmap
     private lateinit var anterior: Bitmap
-    private lateinit var final: Bitmap
     private lateinit var s1:SeekBar
     private lateinit var sR:SeekBar
     private lateinit var sG:SeekBar
     private lateinit var sB:SeekBar
 
-    lateinit var Undo:Button
-    lateinit var Previa:Button
-    lateinit var Aplicar:Button
-    lateinit var Guardar:Button
-
+    lateinit var Undo:ImageView
+    lateinit var Previa:ImageView
+    lateinit var Aplicar:ImageView
+    lateinit var Guardar:ImageView
+    lateinit var bit:Bitmap
+    lateinit var btnCamara:ImageView
 
 
 
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         var pB=0
 
 
-
+        btnCamara= findViewById(R.id.btnCamara)
         s1 = findViewById(R.id.S1)
         sR = findViewById(R.id.barritaR)
         sG = findViewById(R.id.barritaG)
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         Previa = findViewById(R.id.btnPrevia)
         Aplicar = findViewById(R.id.btnAplicar)
         Guardar = findViewById(R.id.btnGuardar)
+
 
 
         val adap = ArrayAdapter.createFromResource(this,
@@ -209,7 +211,9 @@ class MainActivity : AppCompatActivity() {
 
         abrirG.setOnClickListener(){
             ImageController.selectPhoto(this, SELECT_ACTIVITY)
+
         }
+
         btnCamara.setOnClickListener{
             val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             if(callCameraIntent.resolveActivity(packageManager) != null) {
@@ -421,6 +425,13 @@ class MainActivity : AppCompatActivity() {
             else -> {
                // Toast.makeText(this, "Unrecognized request code", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        btnGuardar.setOnClickListener{
+            var tittle = "Image"
+            val Desc = "savedImage"
+            bit = mostrar_im.drawable.toBitmap(mostrar_im.width, mostrar_im.height, null)
+            MediaStore.Images.Media.insertImage(contentResolver, bit, tittle , Desc)
         }
 
 

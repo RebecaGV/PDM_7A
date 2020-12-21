@@ -4,34 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F9E79F">
 
     <LinearLayout
-        android:layout_width="348dp"
+        android:background="#F6DA7A"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginTop="5dp"
         android:isScrollContainer="false"
         android:orientation="horizontal"
-        android:padding="0dp">
+        android:padding="10dp"
+        android:gravity="center">
 
-        <Button
+
+        <ImageView
             android:id="@+id/btnCamara"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Camara" />
+            android:layout_height="38dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/camara_rev2" />
 
-        <Button
+
+        <ImageView
             android:id="@+id/abrirG"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Abrir" />
+            android:layout_height="match_parent"
+            android:src="@drawable/op_gallery"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"/>
 
-        <Button
+
+        <ImageView
             android:id="@+id/btnGuardar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Guardar" />
+            android:layout_width="82dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/save1"
+            android:layout_marginLeft="10dp"
+            />
 
 
     </LinearLayout>
@@ -40,27 +52,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:gravity="center"
+        android:background="#F9E79F"
+        >
 
-        <ImageView
+        <com.p1.picza_pdm.PizZoom
             android:id="@+id/mostrar_im"
             android:layout_width="match_parent"
-            android:layout_height="343dp"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            android:layout_height="469dp"
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Filtros"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="cursive"
+            android:textColor="#504F01"/>
 
         <Spinner
             android:id="@+id/filtros"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             tools:layout_editor_absoluteX="21dp"
-            tools:layout_editor_absoluteY="423dp" />
+            tools:layout_editor_absoluteY="423dp"
+            android:fontFamily="cursive"
+            android:textColor="#504F01"
+            android:background="#AED6F1"/>
 
         <SeekBar
             android:id="@+id/S1"
@@ -108,33 +128,43 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:background="#F6DA7A"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="20dp"
+        >
 
-        <Button
+        <ImageView
             android:id="@+id/btnUndo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Revertir"
+            android:layout_width="69dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/undo1"
             tools:layout_editor_absoluteX="158dp"
             tools:layout_editor_absoluteY="672dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnPrevia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vista Previa"
+            android:layout_width="67dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/ver_1"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="670dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnAplicar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Aplicar"
+            android:layout_width="68dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/aplicar1"
             tools:layout_editor_absoluteX="290dp"
             tools:layout_editor_absoluteY="672dp" />
 
